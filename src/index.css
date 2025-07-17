@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Primary Colors */
+  --primary: #e50914;
+  --primary-hover: #b81d24;
+  --primary-light: #f59ca0;
+  --primary-bg: rgba(229, 9, 20, 0.1);
+
+  /* Background Colors */
+  --bg-dark: #0f0f1a;
+  --bg-card: #1a1a2e;
+  --bg-light: #2a2a3a;
+
+  /* Text Colors */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-on-primary: #ffffff;
+
+  /* Accent Colors */
+  --accent-yellow: #ffc107;
+  --accent-blue: #0d6efd;
+  --accent-green: #198754;
+  --accent-teal: #20c997;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.25);
+  --shadow-primary: 0 4px 15px rgba(229, 9, 20, 0.3);
+  --shadow-primary-hover: 0 6px 20px rgba(229, 9, 20, 0.4);
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+}
+
+body {
+  background-color: var(--bg-dark);
+}
