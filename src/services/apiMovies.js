@@ -1,6 +1,7 @@
 const TMDB_URL = 'https://api.themoviedb.org/3/';
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
+// To suggest movies
 export async function fetchMovieOptions(inputValue) {
   if (!inputValue) return [];
 
@@ -23,6 +24,7 @@ export async function fetchMovieOptions(inputValue) {
   }
 }
 
+// To fetch recommended movies
 export async function fetchRecommendedMovies(selectedMovies) {
   const allRecommendations = [];
 
@@ -46,4 +48,34 @@ export async function fetchRecommendedMovies(selectedMovies) {
   }
 
   return allRecommendations;
+}
+
+// To fetch movie detail
+export async function fetchMovieDetails(movieId) {
+  try {
+    const response = await fetch(
+      `${TMDB_URL}movie/${movieId}?api_key=${TMDB_API_KEY}`
+    );
+
+    if (!response.ok) {
+      console.error(
+        'Error fetching movie:',
+        response.status,
+        response.statusText
+      );
+      return null;
+    }
+
+    const data = await response.json();
+
+    if (data.success === false) {
+      console.warn('Movie not found:', data.status_message);
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Network or parsing error:', error);
+    return null;
+  }
 }
