@@ -18,7 +18,6 @@ const MovieDetail = () => {
     async function fetchMovieDetail() {
       const movieDetail = await fetchMovieDetails(movieId);
       setMovieData(movieDetail);
-      console.log(movieDetail);
     }
     fetchMovieDetail();
   }, [movieId]);
@@ -27,7 +26,6 @@ const MovieDetail = () => {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      {/* Backdrop Image Background */}
       <div
         className="fixed inset-0 bg-cover bg-center z-0"
         style={{
@@ -36,7 +34,6 @@ const MovieDetail = () => {
         }}
       />
 
-      {/* Content Container */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-12">
         <MovieHeader
           movie={movieData}
@@ -46,11 +43,11 @@ const MovieDetail = () => {
         <MovieInfoSection movie={movieData} />
       </div>
 
-      {/* Trailer Popup */}
       {showTrailer && (
         <TrailerPopup
           movieId={movieData.id}
           onClose={() => setShowTrailer(false)}
+          trailerKey={movieData.trailerKey}
         />
       )}
     </div>
