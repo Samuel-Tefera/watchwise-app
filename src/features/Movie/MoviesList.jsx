@@ -12,13 +12,10 @@ export default function MoviesList() {
   const [movies, setMovies] = useState(null);
 
   const selectedFilms = location.state?.films || [];
-  console.log(selectedFilms);
 
   useEffect(() => {
     async function fetchMovies() {
       const movies = await fetchRecommendedMovies(selectedFilms);
-      console.log(movies);
-
       setMovies(movies);
     }
     fetchMovies();
@@ -26,7 +23,7 @@ export default function MoviesList() {
 
   if (!movies)
     return (
-      <div className="">
+      <div>
         <Spinner />
       </div>
     );

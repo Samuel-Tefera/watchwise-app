@@ -10,8 +10,9 @@ const MovieCard = ({ movie }) => {
         alt={movie.title}
       />
       <MovieOverlay
+        movieId={movie.id}
         title={movie.title}
-        rating={movie.rating}
+        rating={movie.vote_average}
         onPlay={movie.onPlay}
         onAdd={movie.onAdd}
       />
