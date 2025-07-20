@@ -79,3 +79,27 @@ export async function fetchMovieDetails(movieId) {
     return null;
   }
 }
+
+// To get offical trailer key
+export async function getOfficialTrailerKey(movieId) {
+  const url = `${TMDB_URL}movie/${movieId}/videos?api_key=${TMDB_API_KEY}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok)
+      throw new Error(`TMDB response error: ${response.status}`);
+
+    const data = await response.json();
+    const trailer = data.results.find(
+      (video) =>
+        video.type === 'Trailer' &&
+        video.site === 'YouTube' &&
+        video.official === true
+    );
+
+    return trailer ? trailer.key : null;
+  } catch (error) {
+    console.error('Error fetching trailer key:', error.message);
+    return null;
+  }
+}
