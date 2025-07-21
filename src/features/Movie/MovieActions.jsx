@@ -14,7 +14,9 @@ const MovieActions = ({ onAdd, movieId }) => {
         <FaPlay />
       </button>
       <button
-        onClick={onAdd}
+        onClick={() => {
+          onAdd(movieId);
+        }}
         className="bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 ease-in-out hover:bg-[#e50914]"
       >
         <FaPlus />

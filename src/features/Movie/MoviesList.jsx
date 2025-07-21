@@ -5,6 +5,7 @@ import MovieGrid from './MovieGrid';
 import MovieCard from './MovieCard';
 import { fetchRecommendedMovies } from '../../services/apiMovies';
 import Spinner from '../../UI/Spinner';
+import { useWatchlist } from '../../hooks/useWatchlist';
 
 export default function MoviesList() {
   const location = useLocation();
@@ -21,6 +22,12 @@ export default function MoviesList() {
     fetchMovies();
   }, [selectedFilms]);
 
+  const { addToWatchlist } = useWatchlist();
+
+  function onAdd(id) {
+    addToWatchlist(id);
+  }
+
   if (!movies)
     return (
       <div>
@@ -31,7 +38,7 @@ export default function MoviesList() {
   return (
     <MovieGrid>
       {movies.map((movie, index) => (
-        <MovieCard key={index} movie={movie} />
+        <MovieCard key={index} movie={movie} onAdd={onAdd} />
       ))}
     </MovieGrid>
   );

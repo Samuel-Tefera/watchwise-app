@@ -6,6 +6,7 @@ import TrailerPopup from './TrailerPopup';
 import Spinner from '../../UI/Spinner';
 import { useParams } from 'react-router-dom';
 import { fetchMovieDetails } from '../../services/apiMovies';
+import { useWatchlist } from '../../hooks/useWatchlist';
 
 const MovieDetail = () => {
   const [showTrailer, setShowTrailer] = useState(false);
@@ -21,6 +22,8 @@ const MovieDetail = () => {
     }
     fetchMovieDetail();
   }, [movieId]);
+
+  const { addToWatchlist } = useWatchlist();
 
   if (!movieData) return <Spinner />;
 
@@ -38,6 +41,7 @@ const MovieDetail = () => {
         <MovieHeader
           movie={movieData}
           onPlayTrailer={() => setShowTrailer(true)}
+          onAdd={() => addToWatchlist(+movieId)}
         />
 
         <MovieInfoSection movie={movieData} />
