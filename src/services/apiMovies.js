@@ -103,3 +103,25 @@ export async function getOfficialTrailerKey(movieId) {
     return null;
   }
 }
+
+// Get watchlist movies
+export async function fetchWatchlistMovies(ids) {
+  if (!Array.isArray(ids) || ids.length === 0) return [];
+
+  try {
+    const fetches = ids.map((id) =>
+      fetch(
+        `${TMDB_URL}movie/${id}?api_key=${TMDB_API_KEY}&language=en-US`
+      ).then((res) => {
+        if (!res.ok) throw new Error(`Failed to fetch movie with ID ${id}`);
+        return res.json();
+      })
+    );
+
+    const movies = await Promise.all(fetches);
+    return movies;
+  } catch (error) {
+    console.error('Error fetching movies by IDs:', error);
+    return [];
+  }
+}
