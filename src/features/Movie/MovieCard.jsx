@@ -2,7 +2,7 @@ import React from 'react';
 import MoviePoster from './MoviePoster';
 import MovieOverlay from './MovieOverlay';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onAdd, onRemove }) => {
   return (
     <div className="relative rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_10px_25px_rgba(229,9,20,0.3)] hover:z-20 aspect-[2/3]">
       <MoviePoster
@@ -14,7 +14,8 @@ const MovieCard = ({ movie }) => {
         title={movie.title}
         rating={movie.vote_average}
         onPlay={movie.onPlay}
-        onAdd={movie.onAdd}
+        onAdd={onAdd}
+        onRemove={onRemove}
       />
     </div>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
-import { FaPlay, FaPlus } from 'react-icons/fa';
+import { FaMinus, FaPlay, FaPlus } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-const MovieActions = ({ onAdd, movieId }) => {
+const MovieActions = ({ onAdd, onRemove, movieId }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,11 +15,12 @@ const MovieActions = ({ onAdd, movieId }) => {
       </button>
       <button
         onClick={() => {
-          onAdd(movieId);
+          if (onAdd) onAdd(movieId);
+          if (onRemove) onRemove(movieId);
         }}
         className="bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 ease-in-out hover:bg-[#e50914]"
       >
-        <FaPlus />
+        {onRemove ? <FaMinus /> : <FaPlus />}
       </button>
     </div>
   );

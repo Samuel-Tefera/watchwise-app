@@ -9,10 +9,7 @@ import Spinner from '../../UI/Spinner';
 export default function Watchlist() {
   const [movies, setMovies] = useState(null);
 
-  console.log(movies);
-
-  const { watchlist } = useWatchlist();
-  console.log(watchlist);
+  const { watchlist, removeFromWatchlist } = useWatchlist();
 
   useEffect(() => {
     async function fetchMovies() {
@@ -21,6 +18,10 @@ export default function Watchlist() {
     }
     fetchMovies();
   }, [watchlist]);
+
+  function onRemove(id) {
+    removeFromWatchlist(id);
+  }
 
   if (!movies)
     return (
@@ -32,7 +33,7 @@ export default function Watchlist() {
   return (
     <MovieGrid>
       {movies.map((movie, index) => (
-        <MovieCard key={index} movie={movie} />
+        <MovieCard key={index} movie={movie} onRemove={onRemove} />
       ))}
     </MovieGrid>
   );
