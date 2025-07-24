@@ -125,3 +125,25 @@ export async function fetchWatchlistMovies(ids) {
     return [];
   }
 }
+
+// To fetch trending movies
+export async function fetchTrendingMovies(type = 'trending') {
+  let url;
+  if (type === 'trending') {
+    url = `${TMDB_URL}trending/movie/week?api_key=${TMDB_API_KEY}`;
+  } else if (type === 'top_rated') {
+    url = `${TMDB_URL}movie/top_rated?api_key=${TMDB_URL}&language=en-US&page=1`;
+  } else {
+    throw new Error('Invalid type. Use "trending" or "top_rated".');
+  }
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Failed to fetch suggested movies');
+    const data = await res.json();
+    return data.results || [];
+  } catch (error) {
+    console.error('Error fetching suggested movies:', error);
+    return [];
+  }
+}

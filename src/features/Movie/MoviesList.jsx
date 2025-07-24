@@ -3,7 +3,10 @@ import { useLocation } from 'react-router-dom';
 
 import MovieGrid from './MovieGrid';
 import MovieCard from './MovieCard';
-import { fetchRecommendedMovies } from '../../services/apiMovies';
+import {
+  fetchRecommendedMovies,
+  fetchTrendingMovies,
+} from '../../services/apiMovies';
 import Spinner from '../../UI/Spinner';
 import { useWatchlist } from '../../hooks/useWatchlist';
 
@@ -12,12 +15,17 @@ export default function MoviesList() {
 
   const [movies, setMovies] = useState(null);
 
-  const selectedFilms = location.state?.films || [];
+  const selectedFilms = location.state?.films ? location.state.films : [];
 
   useEffect(() => {
     async function fetchMovies() {
-      const movies = await fetchRecommendedMovies(selectedFilms);
-      setMovies(movies);
+      if (selectedFilms.length !== 0) {
+        const movies = await fetchRecommendedMovies(selectedFilms);
+        setMovies(movies);
+      } else {
+        const movies = await fetchTrendingMovies();
+        setMovies(movies);
+      }
     }
     fetchMovies();
   }, [selectedFilms]);
