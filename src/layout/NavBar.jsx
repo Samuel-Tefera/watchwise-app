@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
   return (
@@ -6,14 +7,14 @@ export default function NavBar() {
       <div className="text-primary font-semibold text-3xl">🎬 WatchWise</div>
       <ul className="flex gap-5 items-center justify-between font-semibold text-primary text-xl uppercase">
         <li>
-          <a className="hover:text-primary-hover" href="#">
+          <Link to="/discover" className="hover:text-primary-hover" href="#">
             Trending Movies
-          </a>
+          </Link>
         </li>
         <li>
-          <a className="hover:text-primary-hover" href="#">
+          <Link to="/watchlist" className="hover:text-primary-hover" href="#">
             WatchList
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
