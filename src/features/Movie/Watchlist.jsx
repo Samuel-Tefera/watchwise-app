@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWatchlistMovies } from '../../services/apiMovies';
 import { useWatchlist } from '../../hooks/useWatchlist';
-import { FaPlay, FaStar, FaTrash } from 'react-icons/fa';
 import MovieGrid from './MovieGrid';
 import MovieCard from './MovieCard';
 import Spinner from '../../UI/Spinner';

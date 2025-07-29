@@ -16,13 +16,13 @@ const MovieHeader = ({ movie, onPlayTrailer, onAdd }) => {
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{movie.title}</h1>
 
         <div className="flex flex-wrap items-center gap-4 mb-6">
-          <span className="text-yellow bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold flex items-center">
+          <span className="text-yellow bg-yellow-500 px-3 py-1 rounded-full text-sm font-bold flex items-center">
             ★ {roundToOneDecimal(movie.vote_average)}
           </span>
           <span>{movie.release_date.split('-')[0]}</span>
           <span>{movie.runtime} min</span>
           {movie.adult && (
-            <span className="bg-red-500 px-3 py-1 rounded-full text-xs">
+            <span className="bg-primary px-3 py-1 rounded-full text-xs">
               18+
             </span>
           )}
@@ -40,7 +40,7 @@ const MovieHeader = ({ movie, onPlayTrailer, onAdd }) => {
         </div>
 
         {movie.tagline && (
-          <p className="italic text-xl text-white/80 mb-6">"{movie.tagline}"</p>
+          <p className="italic text-xl text-white/80 mb-6">{movie.tagline}</p>
         )}
 
         <p className="text-lg text-white/90 mb-8 leading-relaxed">
@@ -50,7 +50,7 @@ const MovieHeader = ({ movie, onPlayTrailer, onAdd }) => {
         <div className="flex flex-wrap gap-4">
           <button
             onClick={onPlayTrailer}
-            className="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105"
+            className="bg-primary hover:bg-primary-hover px-8 py-3 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105"
           >
             Play Trailer
           </button>

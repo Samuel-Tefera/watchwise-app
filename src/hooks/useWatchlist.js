@@ -8,7 +8,6 @@ export function useWatchlist() {
     }
     return [];
   });
-  console.log(watchlist);
 
   useEffect(() => {
     localStorage.setItem('watchlist', JSON.stringify(watchlist));

@@ -34,7 +34,7 @@ const TrailerPopup = ({ onClose }) => {
       <div className="relative w-full max-w-4xl h-2/3">
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white hover:text-red-500 transition-colors text-4xl z-10"
+          className="absolute -top-12 right-0 text-text-primary hover:text-primary transition-colors text-4xl z-10"
           aria-label="Close trailer"
         >
           <FaTimes />
@@ -42,10 +42,10 @@ const TrailerPopup = ({ onClose }) => {
 
         {isLoading ? (
           <div className="w-full h-full flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
           </div>
         ) : error ? (
-          <div className="w-full h-full flex items-center justify-center text-white text-xl">
+          <div className="w-full h-full flex items-center justify-center text-text-primary text-xl">
             {error}
           </div>
         ) : trailerKey ? (

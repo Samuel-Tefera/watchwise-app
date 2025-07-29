@@ -8,7 +8,6 @@ const MovieInfoSection = ({ movie }) => {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Left Column */}
         <div>
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Status</h3>

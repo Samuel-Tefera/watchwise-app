@@ -9,7 +9,7 @@ const MovieActions = ({ onAdd, onRemove, movieId }) => {
     <div className="flex justify-between items-center w-full">
       <button
         onClick={() => navigate(`/movie/${movieId}`)}
-        className="bg-[#e50914] text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 ease-in-out hover:scale-110"
+        className="bg-primary text-text-primary rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 ease-in-out hover:scale-110"
       >
         <FaPlay />
       </button>
@@ -18,7 +18,7 @@ const MovieActions = ({ onAdd, onRemove, movieId }) => {
           if (onAdd) onAdd(movieId);
           if (onRemove) onRemove(movieId);
         }}
-        className="bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 ease-in-out hover:bg-[#e50914]"
+        className="bg-white/20 text-text-primary rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 ease-in-out hover:bg-primary"
       >
         {onRemove ? <FaMinus /> : <FaPlus />}
       </button>
