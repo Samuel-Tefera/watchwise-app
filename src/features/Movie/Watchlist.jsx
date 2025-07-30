@@ -32,7 +32,12 @@ export default function Watchlist() {
   return (
     <MovieGrid>
       {movies.map((movie, index) => (
-        <MovieCard key={index} movie={movie} onRemove={onRemove} />
+        <MovieCard
+          key={index}
+          movie={movie}
+          onRemove={onRemove}
+          watchlist={watchlist}
+        />
       ))}
     </MovieGrid>
   );

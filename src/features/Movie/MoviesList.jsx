@@ -30,10 +30,14 @@ export default function MoviesList() {
     fetchMovies();
   }, [selectedFilms]);
 
-  const { addToWatchlist } = useWatchlist();
+  const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
 
   function onAdd(id) {
     addToWatchlist(id);
+  }
+
+  function onRemove(id) {
+    removeFromWatchlist(id);
   }
 
   if (!movies)
@@ -46,7 +50,13 @@ export default function MoviesList() {
   return (
     <MovieGrid>
       {movies.map((movie, index) => (
-        <MovieCard key={index} movie={movie} onAdd={onAdd} />
+        <MovieCard
+          key={index}
+          movie={movie}
+          watchlist={watchlist}
+          onAdd={onAdd}
+          onRemove={onRemove}
+        />
       ))}
     </MovieGrid>
   );
