@@ -15,8 +15,6 @@ export function useWatchlist() {
 
   function addToWatchlist(id) {
     setWatchlist((prev) => {
-      console.log(prev);
-
       if (!prev.includes(id)) {
         return [...prev, id];
       }
