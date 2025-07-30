@@ -1,7 +1,7 @@
 import React from 'react';
 import { roundToOneDecimal } from '../../utils/utils';
 
-const MovieHeader = ({ movie, onPlayTrailer, onAdd }) => {
+const MovieHeader = ({ movie, onPlayTrailer, isInWatchlist, handleClick }) => {
   return (
     <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
       <div className="w-full md:w-1/3 lg:w-1/4 flex-shrink-0">
@@ -55,10 +55,10 @@ const MovieHeader = ({ movie, onPlayTrailer, onAdd }) => {
             Play Trailer
           </button>
           <button
-            onClick={onAdd}
+            onClick={handleClick}
             className="bg-white/10 hover:bg-white/20 px-8 py-3 rounded-lg font-bold flex items-center gap-2 transition-all hover:scale-105"
           >
-            + Watchlist
+            {!isInWatchlist ? '+ Watchlist' : '- Watchlist'}
           </button>
         </div>
       </div>

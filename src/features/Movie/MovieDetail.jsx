@@ -23,9 +23,11 @@ const MovieDetail = () => {
     fetchMovieDetail();
   }, [movieId]);
 
-  const { addToWatchlist } = useWatchlist();
+  const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
 
   if (!movieData) return <Spinner />;
+
+  const isInWatchlist = watchlist.includes(+movieData.id);
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
@@ -41,7 +43,12 @@ const MovieDetail = () => {
         <MovieHeader
           movie={movieData}
           onPlayTrailer={() => setShowTrailer(true)}
-          onAdd={() => addToWatchlist(+movieId)}
+          handleClick={() => {
+            isInWatchlist
+              ? removeFromWatchlist(+movieId)
+              : addToWatchlist(+movieId);
+          }}
+          isInWatchlist={isInWatchlist}
         />
 
         <MovieInfoSection movie={movieData} />
