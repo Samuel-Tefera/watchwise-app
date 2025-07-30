@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getOfficialTrailerKey } from '../../services/apiMovies';
 import { FaTimes } from 'react-icons/fa';
+
+import { getOfficialTrailerKey } from '../../services/apiMovies';
+import Spinner from '../../UI/Spinner';
 
 const TrailerPopup = ({ onClose }) => {
   const [trailerKey, setTrailerKey] = useState(null);
@@ -41,9 +43,7 @@ const TrailerPopup = ({ onClose }) => {
         </button>
 
         {isLoading ? (
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-          </div>
+          <Spinner />
         ) : error ? (
           <div className="w-full h-full flex items-center justify-center text-text-primary text-xl">
             {error}
