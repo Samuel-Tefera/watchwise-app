@@ -156,10 +156,18 @@ export async function fetchTrendingMovies({
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error('Failed to fetch filtered movies');
+
     const data = await res.json();
-    return data.results || [];
+
+    return {
+      results: data.results || [],
+      totalPages: +data.total_pages || 1,
+    };
   } catch (error) {
     console.error('Error fetching filtered movies:', error);
-    return [];
+    return {
+      results: [],
+      totalPages: 1,
+    };
   }
 }
