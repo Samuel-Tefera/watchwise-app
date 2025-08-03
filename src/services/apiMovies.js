@@ -40,8 +40,8 @@ export async function fetchRecommendedMovies(selectedMovies) {
 
       const data = await res.json();
 
-      const topRecommendations = data.results.slice(0, 10); // Limit per movie
-      allRecommendations.push(...topRecommendations); // Flatten into one array
+      const topRecommendations = data.results;
+      allRecommendations.push(...topRecommendations);
     } catch (error) {
       console.error(error.message);
     }
@@ -127,23 +127,39 @@ export async function fetchWatchlistMovies(ids) {
 }
 
 // To fetch trending movies
-export async function fetchTrendingMovies(type = 'trending') {
+export async function fetchTrendingMovies({
+  type = 'trending',
+  page = 1,
+} = {}) {
   let url;
-  if (type === 'trending') {
-    url = `${TMDB_URL}trending/movie/week?api_key=${TMDB_API_KEY}`;
-  } else if (type === 'top_rated') {
-    url = `${TMDB_URL}movie/top_rated?api_key=${TMDB_URL}&language=en-US&page=1`;
-  } else {
-    throw new Error('Invalid type. Use "trending" or "top_rated".');
+
+  switch (type) {
+    case 'trending':
+      url = `${TMDB_URL}trending/movie/week?api_key=${TMDB_API_KEY}&page=${page}`;
+      break;
+    case 'top_rated':
+      url = `${TMDB_URL}movie/top_rated?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
+      break;
+    case 'popular':
+      url = `${TMDB_URL}movie/popular?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
+      break;
+    case 'now_playing':
+      url = `${TMDB_URL}movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
+      break;
+    case 'upcoming':
+      url = `${TMDB_URL}movie/upcoming?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`;
+      break;
+    default:
+      throw new Error('Invalid filter type');
   }
 
   try {
     const res = await fetch(url);
-    if (!res.ok) throw new Error('Failed to fetch suggested movies');
+    if (!res.ok) throw new Error('Failed to fetch filtered movies');
     const data = await res.json();
     return data.results || [];
   } catch (error) {
-    console.error('Error fetching suggested movies:', error);
+    console.error('Error fetching filtered movies:', error);
     return [];
   }
 }
