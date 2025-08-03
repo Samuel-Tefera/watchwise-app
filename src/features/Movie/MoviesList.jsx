@@ -10,11 +10,13 @@ import Spinner from '../../UI/Spinner';
 import MovieCard from './MovieCard';
 import MovieFilter from './MovieFilter';
 import MovieGrid from './MovieGrid';
+import Pagination from '../../UI/Pagination';
 
 export default function MoviesList() {
   const location = useLocation();
 
   const [movies, setMovies] = useState(null);
+  const [totalNumPages, setTotalNumPages] = useState(1);
 
   const selectedFilms = location.state?.films ? location.state.films : [];
 
@@ -25,6 +27,8 @@ export default function MoviesList() {
     [searchParams]
   );
 
+  const pageNum = useMemo(() => +searchParams.get('page') || 1, [searchParams]);
+
   useEffect(() => {
     async function fetchMovies() {
       if (selectedFilms.length !== 0) {
@@ -34,12 +38,14 @@ export default function MoviesList() {
         setMovies(null);
         const movies = await fetchTrendingMovies({
           type: category,
+          page: pageNum,
         });
-        setMovies(movies);
+        setTotalNumPages(movies.totalPages);
+        setMovies(movies.results);
       }
     }
     fetchMovies();
-  }, [selectedFilms.length, category]);
+  }, [selectedFilms.length, category, pageNum]);
 
   const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
 
@@ -72,6 +78,9 @@ export default function MoviesList() {
           />
         ))}
       </MovieGrid>
+      {!selectedFilms.length && (
+        <Pagination currentPage={pageNum} totalPages={totalNumPages} />
+      )}
     </div>
   );
 }
