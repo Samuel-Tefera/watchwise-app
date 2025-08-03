@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
-import MovieGrid from './MovieGrid';
-import MovieCard from './MovieCard';
+import { useWatchlist } from '../../hooks/useWatchlist';
 import {
   fetchRecommendedMovies,
   fetchTrendingMovies,
 } from '../../services/apiMovies';
 import Spinner from '../../UI/Spinner';
-import { useWatchlist } from '../../hooks/useWatchlist';
+import MovieCard from './MovieCard';
+import MovieFilter from './MovieFilter';
+import MovieGrid from './MovieGrid';
 
 export default function MoviesList() {
   const location = useLocation();
@@ -17,18 +18,28 @@ export default function MoviesList() {
 
   const selectedFilms = location.state?.films ? location.state.films : [];
 
+  const [searchParams] = useSearchParams();
+
+  const category = useMemo(
+    () => searchParams.get('category') || 'trending',
+    [searchParams]
+  );
+
   useEffect(() => {
     async function fetchMovies() {
       if (selectedFilms.length !== 0) {
         const movies = await fetchRecommendedMovies(selectedFilms);
         setMovies(movies);
       } else {
-        const movies = await fetchTrendingMovies();
+        setMovies(null);
+        const movies = await fetchTrendingMovies({
+          type: category,
+        });
         setMovies(movies);
       }
     }
     fetchMovies();
-  }, [selectedFilms]);
+  }, [selectedFilms.length, category]);
 
   const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
 
@@ -48,16 +59,19 @@ export default function MoviesList() {
     );
 
   return (
-    <MovieGrid>
-      {movies.map((movie, index) => (
-        <MovieCard
-          key={index}
-          movie={movie}
-          watchlist={watchlist}
-          onAdd={onAdd}
-          onRemove={onRemove}
-        />
-      ))}
-    </MovieGrid>
+    <div>
+      {!selectedFilms.length && <MovieFilter />}
+      <MovieGrid>
+        {movies.map((movie, index) => (
+          <MovieCard
+            key={index}
+            movie={movie}
+            watchlist={watchlist}
+            onAdd={onAdd}
+            onRemove={onRemove}
+          />
+        ))}
+      </MovieGrid>
+    </div>
   );
 }
