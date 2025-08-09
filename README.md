@@ -1,12 +1,49 @@
-# React + Vite
+# WatchWise
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+WatchWise is a React app built with Vite that helps you discover and track movies your way.
 
-Currently, two official plugins are available:
+## What it does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- You tell WatchWise your 3 favorite movies, and it recommends new ones tailored to your taste.
+- Browse top-rated, trending, upcoming, and now-playing movies.
+- Search for any movie and check out its details.
+- Watch trailers right inside the app.
+- Add movies to your personal watchlist to keep track of what you want to see next.
 
-## Expanding the ESLint configuration
+## How it works
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+WatchWise uses the TMDB (The Movie Database) API to fetch all movie data, images, and trailers.
+
+---
+
+## Screenshots
+
+| ![Screenshot](<public/screenshots/Screenshot%20(104).png>) | ![Screenshot](<public/screenshots/Screenshot%20(109).png>) | ![Screenshot](<public/screenshots/Screenshot%20(110).png>) | ![Screenshot](<public/screenshots/Screenshot%20(113).png>) | ![Screenshot](<public/screenshots/Screenshot%20(114).png>) |
+| :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: |
+| ![Screenshot](<public/screenshots/Screenshot%20(116).png>) | ![Screenshot](<public/screenshots/Screenshot%20(117).png>) | ![Screenshot](<public/screenshots/Screenshot%20(118).png>) | ![Screenshot](<public/screenshots/Screenshot%20(194).png>) | ![Screenshot](<public/screenshots/Screenshot%20(120).png>) |
+
+## Installation
+
+1. Clone the repo
+
+   ```bash
+   git clone https://github.com/yourusername/watchwise.git
+   ```
+
+2. Install dependencies
+
+   ```bash
+   git clone https://github.com/yourusername/watchwise.git
+   ```
+
+3. Create a .env file in the root folder and add your TMDB API key:
+
+   ```ini
+   VITE_TMDB_API_KEY=your_api_key_here
+   ```
+
+4. Run the app
+
+   ```bash
+   npm run dev
+   ```
