@@ -10,12 +10,11 @@ export default function NavBar() {
     <nav className="bg-dark border-b border-stone-800 fixed top-0 w-full flex items-center justify-between py-4 px-4 sm:px-12 md:px-24 z-50">
       <Link
         to="/"
-        className="text-primary font-semibold text-xl sm:text-2xl md:text-3xl flex items-center gap-2 sm:gap-3"
+        className="text-primary font-semibold text-2xl md:text-3xl flex items-center gap-2 sm:gap-3"
       >
-        <FaFilm /> WatchWise
+        <FaFilm /> <span className="hidden sm:inline-block">WatchWise</span>
       </Link>
 
-      <NavSearch isMobile={true} />
       <NavSearch />
 
       <ul className="hidden md:flex gap-5 items-center font-semibold text-primary text-lg xl:text-xl uppercase">
