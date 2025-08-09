@@ -7,7 +7,9 @@ export async function fetchMovieOptions(inputValue) {
 
   try {
     const res = await fetch(
-      `${TMDB_URL}search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(inputValue)}&include_adult=false&language=en-US`
+      `${TMDB_URL}search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+        inputValue
+      )}&include_adult=false&language=en-US`
     );
 
     if (!res.ok) throw new Error('Failed to fetch movies');
@@ -17,6 +19,7 @@ export async function fetchMovieOptions(inputValue) {
     return data.results.slice(0, 10).map((movie) => ({
       label: `${movie.title} (${movie.release_date?.split('-')[0] || 'N/A'})`,
       value: movie.id,
+      poster: movie.poster_path || null,
     }));
   } catch (error) {
     console.error('Error fetching movie options:', error);
@@ -169,5 +172,23 @@ export async function fetchTrendingMovies({
       results: [],
       totalPages: 1,
     };
+  }
+}
+
+// Searching Movies
+export async function searchMovies(query, page = 1) {
+  const url = `${TMDB_URL}search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${encodeURIComponent(
+    query
+  )}&page=${page}&include_adult=false`;
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Failed to search movies');
+
+    const data = await res.json();
+    return data.results || [];
+  } catch (error) {
+    console.error('Error searching movies:', error);
+    return [];
   }
 }
