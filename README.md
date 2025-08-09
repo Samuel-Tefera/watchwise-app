@@ -20,7 +20,7 @@ WatchWise uses the TMDB (The Movie Database) API to fetch all movie data, images
 
 | ![Screenshot](<public/screenshots/Screenshot%20(104).png>) | ![Screenshot](<public/screenshots/Screenshot%20(109).png>) | ![Screenshot](<public/screenshots/Screenshot%20(110).png>) | ![Screenshot](<public/screenshots/Screenshot%20(113).png>) | ![Screenshot](<public/screenshots/Screenshot%20(114).png>) |
 | :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: |
-| ![Screenshot](<public/screenshots/Screenshot%20(116).png>) | ![Screenshot](<public/screenshots/Screenshot%20(117).png>) | ![Screenshot](<public/screenshots/Screenshot%20(118).png>) |  ![Screenshot](<public/screenshots/Screenshots(119).png>)  | ![Screenshot](<public/screenshots/Screenshot%20(120).png>) |
+| ![Screenshot](<public/screenshots/Screenshot%20(116).png>) | ![Screenshot](<public/screenshots/Screenshot%20(117).png>) | ![Screenshot](<public/screenshots/Screenshot%20(118).png>) |  ![Screenshot](<public/screenshots/Screenshot (119).png>)  | ![Screenshot](<public/screenshots/Screenshot%20(120).png>) |
 
 ## Installation
 
