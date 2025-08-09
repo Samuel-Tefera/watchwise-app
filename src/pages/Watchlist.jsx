@@ -3,7 +3,7 @@ import { FaPlay, FaTrash, FaBookmark, FaStar } from 'react-icons/fa';
 import Watchlist from '../features/Movie/Watchlist';
 
 const WatchlistPage = () => {
-  if (true) return <Watchlist />;
+  return <Watchlist />;
 };
 
 export default WatchlistPage;
